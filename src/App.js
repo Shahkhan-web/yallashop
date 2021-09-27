@@ -1,8 +1,9 @@
 import React from "react";
+import Products from './Components/products/products'
 const App = () => {
     return (
         <div>
-          <h1>  Test</h1>
+       <Products></Products>
         </div>
     )
 }
