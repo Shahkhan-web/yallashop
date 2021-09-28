@@ -6,7 +6,7 @@ import useStyles from './styles';
 
 
 const Product = ({product}) => {
-    const classes = useStyles();
+    const classes = useStyles(); 
     return (
         <Card className ={classes.root}>
             <CardMedia className={classes.media} image={product.image} title={product.name} />
@@ -17,6 +17,7 @@ const Product = ({product}) => {
                     </Typography> 
                     <Typography variant="h5">
                         {product.price}
+                        <Typography variant="overline">AED</Typography>
                     </Typography>
                 </div>
                 <Typography variant="body2" color="textSecondary">{product.description}</Typography>

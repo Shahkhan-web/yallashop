@@ -1,23 +1,26 @@
 import React from "react";
 import { Grid } from "@material-ui/core";
-import Product from './product/products'
-
+import Product from './product/products';
+import useStyles from './styles';
 const products = [
-    {id:1,  name:'shoes',description:'running shoes',price:'$5',image:'https://www.google.com/imgres?imgurl=https%3A%2F%2Fcdn.vox-cdn.com%2Fthumbor%2FpjcUw1kyqVQA8sbGFd1mz2g9pog%3D%2F1400x1400%2Ffilters%3Aformat(jpeg)%2Fcdn.vox-cdn.com%2Fuploads%2Fchorus_asset%2Ffile%2F22406771%2FExbfpl2WgAAQkl8_resized.jpeg&imgrefurl=https%3A%2F%2Fwww.theverge.com%2F2021%2F3%2F29%2F22357225%2Fnike-sues-lil-nas-x-unauthorized-satan-shoes-mschf&tbnid=ts1_qF_A2zJMlM&vet=12ahUKEwjxk73UlqDzAhUPwoUKHSN2DSEQMygFegUIARDYAQ..i&docid=S9_q8mcrne1a6M&w=1400&h=1400&q=shoes&ved=2ahUKEwjxk73UlqDzAhUPwoUKHSN2DSEQMygFegUIARDYAQ'},
-    {id:2,  name:'table',description:'mirror tablen',price:'$10',image:'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.theone.com%2Ftora-dining-table-180x93-clear&psig=AOvVaw2CKvWH-wMnlAqg6ASX3ns2&ust=1632867183029000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCKit_r6WoPMCFQAAAAAdAAAAABAD'}
+    {id:1,  name:'Cup',description:'tea cup',price:'15.99',image:'https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8dGFibGV8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'},
+    {id:2,  name:'Shoes',description:'Jogging shoes',price:'49.99',image:'https://media.istockphoto.com/photos/running-shoes-picture-id1249496770?b=1&k=20&m=1249496770&s=170667a&w=0&h=_SUv4odBqZIzcXvdK9rqhPBIenbyBspPFiQOSDRi-RI='}
     
 ]
 
-const product =()=>{
+const Products =({product})=>{
+    const classes = useStyles();
     return(
-<main>
-<Grid container justify= "center" spacing={4}>
+<main className={classes.content}>
+<div className={classes.toolbar}/>
+<Grid container justifyContent= "center" spacing={4}>
 {products.map((product)=>(
-    <grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
+    <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
         <Product product={product}/>
-    </grid>
+        
+    </Grid>
 ))}
 </Grid>
 </main>
 )}
-export default product;
+export default Products;
