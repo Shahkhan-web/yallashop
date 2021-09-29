@@ -29,8 +29,8 @@ const handlAddToCart = async(productId,quantity)=>{
      console.log(cart);
     return (
       <div>
-      {/* <Navbar totalItems={cart.total_items}/>
-     <Products  products={products} onAddToCart={handlAddToCart}/>*/}
+     <Navbar totalItems={cart.total_items}/>
+     {/*<Products  products={products} onAddToCart={handlAddToCart}/>*/}
       <Cart cart={cart}/>
       </div>
     )

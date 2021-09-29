@@ -9,7 +9,8 @@ const Cart = ({ cart }) => {
         <Typography variant='subtitle1'>You have no items in your cart.Start adding some!</Typography>
     )
 
-    const FilledCart =()=>(
+    const FilledCart =()=>
+       (
         <>
             <Grid Container spacing={3}>
                 {cart.line_items.map((item)=>(
@@ -28,14 +29,20 @@ const Cart = ({ cart }) => {
                     </div>
             </div>
         </>
-    );
-
-    if (!cart.line_item) return 'Loading... ';
+        );
+                
+    if (!cart.line_item) return(
+            <div>
+                <div className={classes.toolbar}/>
+                    <Typography className={classes.title} variant='h5'>
+                        Loading...
+                    </Typography>
+           </div>)
  
     return (
             <Container>
-               <div className="classes.toolbar"/>
-                <Typography className={classes.title}>
+               <div className={classes.toolbar}/>
+                <Typography className={classes.title} variant='h3'>
                     Your Shopping Cart
                 </Typography>
                 {!cart.line_items.length? <EmptyCart/> : <FilledCart/>}
