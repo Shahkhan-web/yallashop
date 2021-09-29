@@ -1,16 +1,15 @@
-import { Container, Grid, Typography,Button } from '@material-ui/core'
-import React from 'react'
-import useStyles from './styles'
+import { Container, Grid, Typography,Button } from '@material-ui/core';
+import React from 'react';
+import useStyles from './styles';
 
 const Cart = ({ cart }) => {
-    const classes =useStyles;
-    const isEmpty= !cart.line_items.length;
+    const classes =useStyles();
 
-    const EmptyCart =()=>{
+    const EmptyCart =()=>(
         <Typography variant='subtitle1'>You have no items in your cart.Start adding some!</Typography>
-    }
+    )
 
-    const FilledCart =()=>{
+    const FilledCart =()=>(
         <>
             <Grid Container spacing={3}>
                 {cart.line_items.map((item)=>(
@@ -24,21 +23,25 @@ const Cart = ({ cart }) => {
                             Subtotal: {cart.subtotal.formatted_with_symbol}
                     </Typography>
                     <div>
-                    <Button className={classes.emptyButton} size='large' type='button' color='secondary' variant='contained'>EmptyCart</Button>
+                    <Button className={classes.emptyButton} size='large' type='button' color='secondary' variant='contained'>Empty Cart</Button>
                     <Button className={classes.checkoutButton} size='large' type='button' color='primary' variant='contained'>Checkout</Button>
                     </div>
             </div>
         </>
-    }
+    );
+
+    if (!cart.line_item) return 'Loading... ';
+ 
     return (
             <Container>
                <div className="classes.toolbar"/>
                 <Typography className={classes.title}>
                     Your Shopping Cart
                 </Typography>
-                {isEmpty ? <EmptyCart/> : <FilledCart/>}
+                {!cart.line_items.length? <EmptyCart/> : <FilledCart/>}
             </Container>
     )
 }
+
 
 export default Cart
