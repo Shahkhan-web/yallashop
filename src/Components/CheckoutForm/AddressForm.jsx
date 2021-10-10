@@ -29,17 +29,16 @@ const AddressForm = ({ checkoutToken, test }) => {
     setShippingSubdivision(Object.keys(subdivisions)[0]);
   };
 
-  commerce.checkout.setTaxZone('chkt_L5z3kmQpdpkGlA', {
+  commerce.checkout.setTaxZone('chkt_L5zDxk7yz42dKw', {
     country: 'AE',
     region: null,
     postal_zip_code: '0000',
   }).then((response) => console.log(response));
 
   const fetchShippingOptions = async (checkoutTokenId, country, stateProvince = null) => {
-    const options = await 
 
-console.log(checkoutTokenId)
-    commerce.checkout.getShippingOptions(checkoutTokenId, {
+    console.log(checkoutTokenId)
+    const options = await commerce.checkout.getShippingOptions(checkoutTokenId, {
       country,
       region: stateProvince});
 

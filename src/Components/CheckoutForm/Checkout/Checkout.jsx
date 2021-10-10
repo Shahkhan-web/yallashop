@@ -36,7 +36,7 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
   }, [cart]);
 
   const test = (data) => {
-    setShippingData(data);
+    setShippingData(data); 
 
     nextStep();
   };
