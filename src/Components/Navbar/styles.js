@@ -16,6 +16,7 @@ export default makeStyles((theme) => ({
     alignItems: 'center',
     display: 'flex',
     textDecoration: 'none',
+    position:'absolute',
   },
   image: {
     marginRight: '10px',

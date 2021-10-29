@@ -30,7 +30,7 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
         ))}
        
       </Grid>
-      <Grid justifyContent='flexstart' alignItems='flex-end' >
+      <Grid container justifyContent='flexstart' alignItems='flex-end' >
             <ReviewCart cart={cart}/>    
      </Grid>
      </Grid>

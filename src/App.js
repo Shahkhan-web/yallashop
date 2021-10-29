@@ -1,27 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import { CssBaseline } from '@material-ui/core';
+import { CssBaseline,Grid} from '@material-ui/core';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import { Navbar, Products, Cart, Checkout } from './components';
+import { Navbar, Products, Cart, Checkout,Categories } from './components';
 import { commerce } from './lib/commerce';
-
 const App = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [products, setProducts] = useState([]);
+  const [categories,setCategories] = useState([])
   const [cart, setCart] = useState({});
   const [order, setOrder] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
+  
 
   const fetchProducts = async () => {
     const { data } = await commerce.products.list();
-
     setProducts(data);
   };
 
   const fetchCart = async () => {
     setCart(await commerce.cart.retrieve());
+  
   };
-
+  const fetchCategories =async () => {
+     const {data} = await commerce.categories.list();
+     setCategories(data)
+  }
   const handleAddToCart = async (productId, quantity) => {
     const item = await commerce.cart.add(productId, quantity);
 
@@ -67,8 +71,9 @@ const App = () => {
   useEffect(() => {
     fetchProducts();
     fetchCart();
+    fetchCategories();   
   }, []);
-
+  
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 
   return (
@@ -76,17 +81,32 @@ const App = () => {
       <div style={{ display: 'flex' }}>
         <CssBaseline />
         <Navbar totalItems={cart.total_items} handleDrawerToggle={handleDrawerToggle} />
-        <Switch>
-          <Route exact path="/">
+    
+
+      
+      <Switch>
+           <Route exact path="/">
+           <Grid
+            container
+            direction="column"
+            justifyContent="center"
+            alignItems="center">
+            <Categories categories ={categories}/>
             <Products products={products} onAddToCart={handleAddToCart} handleUpdateCartQty />
+           
+            </Grid>
           </Route>
-          <Route exact path="/cart">
+        <Route exact path="/categories">
+           <Categories categories ={categories}/>
+           </Route>
+          <Route exact path="/cart"> 
+          
             <Cart cart={cart} onUpdateCartQty={handleUpdateCartQty} onRemoveFromCart={handleRemoveFromCart} onEmptyCart={handleEmptyCart} />
           </Route>
           <Route path="/checkout" exact>
             <Checkout cart={cart} order={order} onCaptureCheckout={handleCaptureCheckout} error={errorMessage} />
           </Route>
-        </Switch>
+        </Switch> 
       </div>
     </Router>
   );
