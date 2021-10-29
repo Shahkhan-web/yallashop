@@ -15,6 +15,7 @@ const SubCategory2 = (categoryId) => {
          const categorydata= await commerce.categories.retrieve(categoryd)
          setsubCategories(categorydata)
          setIsLoading(false)
+         console.log(subCategories)
    }
 
     const classes=useStyles()

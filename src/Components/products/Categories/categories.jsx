@@ -21,7 +21,7 @@ const Categories = ({categories}) => {
           <div className={classes.toolbar} />
           <Grid container justifyContent="center" alignItems="center" spacing={1} className="pa2">
           {categories.map((categories)=>(
-              <Grid  item xs={4} sm={3} md={3} lg={3} >
+              <Grid key={categories.id} item xs={4} sm={3} md={3} lg={3} >
                      <Accordion TransitionProps={{ unmountOnExit: true }}>
                             <AccordionSummary
                                 expandIcon={<ExpandMore />}
