@@ -93,7 +93,6 @@ const App = () => {
             alignItems="center">
             <Categories categories ={categories}/>
             <Products products={products} onAddToCart={handleAddToCart} handleUpdateCartQty />
-           
             </Grid>
           </Route>
         <Route exact path="/categories">
