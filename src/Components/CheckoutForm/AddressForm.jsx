@@ -29,11 +29,11 @@ const AddressForm = ({ checkoutToken, test }) => {
     setShippingSubdivision(Object.keys(subdivisions)[0]);
   };
 
-  commerce.checkout.setTaxZone('chkt_L5zDxk7yz42dKw', {
-    country: 'AE',
-    region: null,
-    postal_zip_code: '0000',
-  }).then((response) => console.log(response));
+  // commerce.checkout.setTaxZone('chkt_L5zDxk7yz42dKw', {
+  //   country: 'AE',
+  //   region: null,
+  //   postal_zip_code: '0000',
+  // }).then((response) => console.log(response));
 
   const fetchShippingOptions = async (checkoutTokenId, country, stateProvince = null) => {
 
@@ -47,7 +47,7 @@ const AddressForm = ({ checkoutToken, test }) => {
   };
   useEffect(() => {
     fetchShippingCountries(checkoutToken.id);
-  }, []);
+  }, [])// eslint-disable-line;
 
   useEffect(() => {
     if (shippingCountry) fetchSubdivisions(shippingCountry);

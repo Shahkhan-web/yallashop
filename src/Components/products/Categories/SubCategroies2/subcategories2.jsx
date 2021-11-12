@@ -1,6 +1,6 @@
 import React, { useEffect,useState } from 'react'
 
-import { Typography,Accordion,AccordionSummary,AccordionDetails, CircularProgress } from '@material-ui/core'
+import { Typography,Accordion,AccordionSummary, CircularProgress } from '@material-ui/core'
 import {ExpandMore } from '@material-ui/icons'
 import useStyles from './styles'
 import { commerce } from '../../../../lib/commerce'
@@ -19,9 +19,9 @@ const SubCategory2 = (categoryId) => {
 
     const classes=useStyles()
         
-          useEffect(()=>{
-                        fetchSubCategories(categoryId.categoryId) ;
-                })
+    useEffect(()=>{
+            fetchSubCategories(categoryId.categoryId) ;
+     },[])
        
 
 
@@ -32,7 +32,7 @@ return(
                 
                <main className={classes.content}>
                     {SVT.map((sdvt)=>(
-                        <Accordion TransitionProps={{ unmountOnExit: true }}>
+                        <Accordion TransitionProps={{ unmountOnExit: true }} key={sdvt.key}>
                             <AccordionSummary
                                 expandIcon={<ExpandMore />}
                                 aria-controls="panel1a-content"
@@ -40,8 +40,6 @@ return(
                                     <Typography>{sdvt.name}</Typography>
                             </AccordionSummary>
                                     <SubCategory categoryId={sdvt.id}/>
-                            <AccordionDetails>
-                            </AccordionDetails>
                         </Accordion>
                 ))}</main>)}
    

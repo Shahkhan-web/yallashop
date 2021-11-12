@@ -1,49 +1,53 @@
 import React, { useEffect,useState } from 'react'
 
-import { Typography,Accordion,AccordionSummary,AccordionDetails, CircularProgress } from '@material-ui/core'
+import { Typography,Accordion,AccordionSummary, CircularProgress } from '@material-ui/core'
 import {ExpandMore } from '@material-ui/icons'
 import useStyles from './styles'
 import { commerce } from '../../../../lib/commerce'
 import SubCategory2 from '../SubCategroies2/subcategories2'
 
-const SubCategory = (categoryId) => {
+const SubCategory = ({renderProductBycategory,categoryId}) => {
     const [isLoading, setIsLoading] = React.useState(true);
-
+    const [subCategories,setsubCategories] = useState([])
     
-   const [subCategories,setsubCategories] = useState([])
-   
-
-   const fetchSubCategories = async (categoryd) =>{
-         const categorydata= await commerce.categories.retrieve(categoryd);
-         setsubCategories(categorydata)
-         setIsLoading(false)
-   }
-
     const classes=useStyles()
-        
-          useEffect(()=>{
-                        fetchSubCategories(categoryId.categoryId) ;
-                })
+ 
+    
+    const fetchSubCategories = async (categoryd) =>{
+            const categorydata= await commerce.categories.retrieve(categoryd)
+            setsubCategories(categorydata)
+            setIsLoading(false)
+    }
+    
+        const checkCategoryChild =()=> {if (subCategories.children.length === 0) {renderProductBycategory(subCategories.id)}}
+       
+        try{ checkCategoryChild()}
+        catch(err) {
+            console.log("Loading...") 
+            try{checkCategoryChild()}
+            catch(err){}}
+
+
+        useEffect(()=>{
+              fetchSubCategories(categoryId) ;
+        },[])
        
 
 
-         const SVT = subCategories.children; 
              if (isLoading) { 
                  return(<CircularProgress />)}
-return(
+            return(
                 
                <main className={classes.content}>
-                    {SVT.map((sdvt)=>(
-                        <Accordion TransitionProps={{ unmountOnExit: true }}>
+                    {subCategories.children.map((sdvt)=>(
+                        <Accordion TransitionProps={{ unmountOnExit: true }} key={sdvt.id}>
                             <AccordionSummary
                                 expandIcon={<ExpandMore />}
                                 aria-controls="panel1a-content"
                                 id="panel1a-header">
-                                    <Typography>{sdvt.name}</Typography>
+                                    <Typography>{sdvt.name}.</Typography>
                             </AccordionSummary>
-                                    <SubCategory2 categoryId={sdvt.id}/>
-                            <AccordionDetails>
-                            </AccordionDetails>
+                               <SubCategory2 categoryId={sdvt.id}/>
                         </Accordion>
                 ))}</main>)}
    

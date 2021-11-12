@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { CssBaseline,Grid} from '@material-ui/core';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import { Navbar, Products, Cart, Checkout,Categories } from './components';
+import { Navbar, Products, Cart, Checkout} from './components';
 import { commerce } from './lib/commerce';
 const App = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -67,11 +67,10 @@ const App = () => {
       setErrorMessage(error.data.error.message);
     }
   };
-
   useEffect(() => {
     fetchProducts();
     fetchCart();
-    fetchCategories();   
+    fetchCategories();  
   }, []);
   
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
@@ -91,13 +90,10 @@ const App = () => {
             direction="column"
             justifyContent="center"
             alignItems="center">
-            <Categories categories ={categories}/>
-            <Products products={products} onAddToCart={handleAddToCart} handleUpdateCartQty />
+
+            <Products categories ={categories} products={products} onAddToCart={handleAddToCart} handleUpdateCartQty/>
             </Grid>
           </Route>
-        <Route exact path="/categories">
-           <Categories categories ={categories}/>
-           </Route>
           <Route exact path="/cart"> 
           
             <Cart cart={cart} onUpdateCartQty={handleUpdateCartQty} onRemoveFromCart={handleRemoveFromCart} onEmptyCart={handleEmptyCart} />

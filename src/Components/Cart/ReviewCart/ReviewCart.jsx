@@ -1,5 +1,4 @@
 import React from 'react'
-import { Box } from '@material-ui/core';
 import { Typography, List, ListItem, ListItemText} from '@material-ui/core';
 import useStyles from './styles';
 
@@ -24,7 +23,7 @@ const ReviewCart = ({cart}) => {
                     </ListItem>
                 
                 ))}
-                <ListItem className={classes.receipt__listrow_total,classes.receipt__list} >
+                <ListItem className={classes.receipt__listrow_total} >
                     <ListItemText primary="Total"  className={classes.receipt__item}/>
                     <Typography variant="subtitle1"  className={classes.receipt__item}>
                         {cart.subtotal.formatted_with_symbol}

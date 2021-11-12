@@ -6,13 +6,19 @@ import useStyles from './styles';
 const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart }) => {
   const classes = useStyles();
 
+  const tc =()=>{ try {
+    return <CardMedia image={item.image.url} alt={item.name} className={classes.media} />
+  } catch (error) {
+    return "loading..." + error;
+  }}
+  
   const handleUpdateCartQty = (lineItemId, newQuantity) => onUpdateCartQty(lineItemId, newQuantity);
 
   const handleRemoveFromCart = (lineItemId) => onRemoveFromCart(lineItemId);
-
+  
   return (
     <Card className="cart-item">
-      <CardMedia image={item.media.source} alt={item.name} className={classes.media} />
+    {tc()}
       <CardContent className={classes.cardContent}>
         <Typography variant="h4">{item.name}</Typography>
         <Typography variant="h5">{item.price.formatted_with_symbol}</Typography>

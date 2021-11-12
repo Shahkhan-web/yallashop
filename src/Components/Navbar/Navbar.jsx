@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
-import { AppBar, Toolbar, IconButton, Badge, MenuItem, Menu, Typography, Accordion,AccordionSummary,Grid,
-AccordionDetails} from '@material-ui/core';
-import { ShoppingCart,ExpandMore } from '@material-ui/icons';
+import { AppBar, Toolbar, IconButton, Badge, MenuItem, Menu, Typography} from '@material-ui/core';
+import { ShoppingCart } from '@material-ui/icons';
 import { Link, useLocation } from 'react-router-dom';
-
-import Categories from "../Products/Categories/categories"
 
 import logo from '../../assets/logo.png';
 import useStyles from './styles';
@@ -13,7 +10,6 @@ const PrimarySearchAppBar = ({ totalItems }) => {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const classes = useStyles();
   const location = useLocation();
-  const [isLoaded, setIsLoading] = React.useState(false);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const handleMobileMenuClose = () => setMobileMoreAnchorEl(null);

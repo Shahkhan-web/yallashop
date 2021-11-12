@@ -24,13 +24,13 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
     <Grid container alignItems='flex-start' justifyContent='space-between' >
       <Grid container spacing='3' className={classes.contain}>
         {cart.line_items.map((lineItem) => (
-          <Grid item xs={12} sm={4} lg={5} m={4} key={lineItem.id}>
+          <Grid item xs={12} sm={6} lg={4} m={4} key={lineItem.id}>
             <CartItem item={lineItem} onUpdateCartQty={onUpdateCartQty} onRemoveFromCart={onRemoveFromCart} />
           </Grid>
         ))}
        
       </Grid>
-      <Grid container justifyContent='flexstart' alignItems='flex-end' >
+      <Grid container justifyContent='flex-start' alignItems='flex-end' >
             <ReviewCart cart={cart}/>    
      </Grid>
      </Grid>
