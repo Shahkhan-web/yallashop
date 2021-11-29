@@ -7,7 +7,6 @@ import { commerce } from './lib/commerce';
 const App = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [products, setProducts] = useState([]);
-  const [categories,setCategories] = useState([])
   const [cart, setCart] = useState({});
   const [order, setOrder] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
@@ -22,10 +21,7 @@ const App = () => {
     setCart(await commerce.cart.retrieve());
   
   };
-  const fetchCategories =async () => {
-     const {data} = await commerce.categories.list();
-     setCategories(data)
-  }
+  
   const handleAddToCart = async (productId, quantity) => {
     const item = await commerce.cart.add(productId, quantity);
 
@@ -70,7 +66,6 @@ const App = () => {
   useEffect(() => {
     fetchProducts();
     fetchCart();
-    fetchCategories();  
   }, []);
   
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
@@ -80,8 +75,6 @@ const App = () => {
       <div style={{ display: 'flex' }}>
         <CssBaseline />
         <Navbar totalItems={cart.total_items} handleDrawerToggle={handleDrawerToggle} />
-    
-
       
       <Switch>
            <Route exact path="/">
@@ -91,7 +84,7 @@ const App = () => {
             justifyContent="center"
             alignItems="center">
 
-            <Products categories ={categories} products={products} onAddToCart={handleAddToCart} handleUpdateCartQty/>
+            <Products products={products} onAddToCart={handleAddToCart} handleUpdateCartQty/>
             </Grid>
           </Route>
           <Route exact path="/cart"> 
